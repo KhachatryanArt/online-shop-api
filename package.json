@@ -1,0 +1,28 @@
+{
+  "name": "transaction",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon run app.js"
+  },
+  "author": "Arthur",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/multer": "^3.0.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-router": "^10.1.1",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "redis": "^4.0.4",
+    "sequelize": "^6.16.2",
+    "sequelize-cli": "^6.4.1",
+    "twilio": "^3.75.0"
+  },
+  "description": ""
+}
