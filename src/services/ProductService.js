@@ -9,7 +9,6 @@ class ProductService {
     static async getAllProduct(id) {
         const productCache = await redisService.getCache(`userID-${id}`);
         if (productCache) {
-        console.log(productCache,7777)
             return productCache
         } else {
             const products = await Product.findAll({
@@ -33,7 +32,8 @@ class ProductService {
         }
     }
 
-    static async createProduct(productName, price, description, category, name, filePath,user_id) {
+    static async createProduct(productName, price, description, category, name, filePath, user_id) {
+
         const product = await Product.create({
             name: productName,
             price: price,
@@ -62,6 +62,7 @@ class ProductService {
     }
 
     static async updateProduct(productName, price, description, category, filePath, name, id, product_Id) {
+
         const oneProduct = await Image.findOne({where: {product_Id: product_Id}})
 
         const oldPath = `${oneProduct.path}\\${oneProduct.name}`;
@@ -82,14 +83,16 @@ class ProductService {
         }, {where: {product_Id: product_Id}});
 
         await redisService.delKey(`userID-${id}`)
+        return ("Product Updated")
     }
 
-    static async deleteProduct(id,user_Id) {
+    static async deleteProduct(id, user_Id) {
         const oneProduct = await Image.findOne({where: {product_Id: id}})
         const oldPath = `${oneProduct.path}\\${oneProduct.name}`;
         await fs.unlinkSync(oldPath);
         await Product.destroy({where: {id: id}});
         await redisService.delKey(`userID-${user_Id}`)
+        return ("Product was deleted")
 
     }
 

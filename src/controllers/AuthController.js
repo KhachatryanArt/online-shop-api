@@ -23,7 +23,6 @@ class AuthController {
         const {email, password} = ctx.request.body;
         const userJwt = await AuthService.login(email, password);
 
-        console.log(userJwt)
         if (userJwt) {
             ctx.body = {
                 msg: "The user successfully logged",

@@ -9,18 +9,6 @@ const Warehouse = require("../db/models/warehouse")
 class BasketService {
 
     static async getBasketContent(id) {
-        // return await Basket.findOne({
-        //         where: {
-        //             user_Id: id
-        //         },
-        //         include: [
-        //             {model: Product},
-        //         ]
-        //     })}
-        //     const query = ` SELECT "Basket"."id", "Basket"."user_Id", "Basket"."product_Id", "Basket"."count", "Basket"."total_amount", "Basket"."createdAt", "Basket"."updatedAt", "Product"."id"
-        //                     AS "Product.id", "Product"."name" AS "Product.name", "Product"."price" AS "Product.price", "Product"."description" AS "Product.description", "Product"."createdAt" AS "Product.createdAt",
-        //                     "Product"."updatedAt" AS "Product.updatedAt" FROM "Baskets" AS "Basket" LEFT OUTER JOIN "Products" AS "Product" ON "Basket"."product_Id" = "Product"."id" WHERE "Basket"."user_Id" = 2 LIMIT 1;`
-        // // )
         return await Basket.sequelize.query(` SELECT "Basket"."id", "Basket"."user_Id",  "Basket"."count", "Basket"."total_amount", "Basket"."createdAt", "Basket"."updatedAt", "Product"."id"
                         AS "Product.id", "Product"."name" AS "Product.name", "Product"."price" AS "Product.price", "Product"."description" AS "Product.description", "Product"."createdAt" AS "Product.createdAt",
                         "Product"."updatedAt" AS "Product.updatedAt" FROM "Baskets" AS "Basket" LEFT OUTER JOIN "Products" AS "Product" ON "Basket"."product_Id" = "Product"."id" WHERE "Basket"."user_Id" = '${id}';`, {type: QueryTypes.SELECT});
